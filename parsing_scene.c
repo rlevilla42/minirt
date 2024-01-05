@@ -6,7 +6,7 @@
 /*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 21:53:12 by rlevilla          #+#    #+#             */
-/*   Updated: 2023/12/18 20:03:41 by rlevilla         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:36:20 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parsing_c(char **step, t_cam *c)
 	last_split = ft_split(step[1], ',');
 	if (last_split == NULL)
 		return (-1);
-	c->view_p = fill_vector(last_split, c->view_p);
+	c->origin = fill_vector(last_split, c->origin);
 	if (last_split == NULL)
 		return (-1);
 	last_split = ft_split(step[2], ',');

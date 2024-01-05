@@ -6,7 +6,7 @@
 /*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:02:06 by rlevilla          #+#    #+#             */
-/*   Updated: 2023/12/17 21:51:44 by rlevilla         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:20:28 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,43 @@ double long	ft_atol(char *str)
 		i++;
 	}
 	return (buffer * countminus);
+}
+
+double	check_minmax(double n, double min, double max)
+{
+	if (n <= min)
+		return (min);
+	if (n >= max)
+		return (max);
+	return (n);
+}
+
+int	get_color_v(t_vect *color)
+{
+	int	x;
+	int	y;
+	int	z;
+
+	x = check_minmax(color->x, 0.0, 1.0) * 255.0;
+	y = check_minmax(color->y, 0.0, 1.0) * 255.0;
+	z = check_minmax(color->z, 0.0, 1.0) * 255.0;
+    return ((x << 16) | (y << 8) | z);
+}
+
+int	get_color_d(double x, double y, double z)
+{
+	int	x1;
+	int	y1;
+	int	z1;
+
+	x1 = check_minmax(x, 0.0, 1.0) * 255.99;
+	y1 = check_minmax(y, 0.0, 1.0) * 255.99;
+	z1 = check_minmax(z, 0.0, 1.0) * 255.99;
+    return ((x1 << 16) | (y1 << 8) | z1);
+}
+
+void	err_malloc()
+{
+	write(2, "Malloc error\n", 13);
+	exit(1);
 }

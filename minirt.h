@@ -6,7 +6,7 @@
 /*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:04:20 by rlevilla          #+#    #+#             */
-/*   Updated: 2023/12/18 20:03:32 by rlevilla         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:47:56 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,9 @@
 #include <string.h>
 
 #define MIN_INT -2147483648
+#define W_WIDTH 800.0
+#define W_HEIGHT 400.0
 // copie fdf function c tout
-typedef	struct	s_img
-{
-	void	*img;
-	char	*img_addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}t_img;
-
-typedef struct	s_color
-{
-	int	col;
-}t_color;
 
 typedef struct s_vect
 {
@@ -44,6 +33,19 @@ typedef struct s_vect
 	double	y;
 	double	z;
 }t_vect;
+
+typedef	struct	s_img
+{
+	void	*img;
+	char	*img_addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_vect	*color;
+}t_img;
+
 /*
 typedef struct	s_objet
 {
@@ -65,7 +67,7 @@ typedef struct	s_a
 
 typedef struct	s_cam
 {
-	t_vect	*view_p;
+	t_vect	*origin;
 	t_vect	*dir; // normalize the vector
 	double	fov;
 	//double	zoom;
@@ -108,6 +110,7 @@ typedef struct	s_scene
 	t_sp	*sp;
 	t_pl	*pl;
 	t_cy	*cy;
+	t_img	*map;
 	//t_objet	*objets;
 	
 }t_scene;
@@ -123,4 +126,59 @@ int			parsing_l(char **step, t_light *l);
 int			parsing_sp(char **step, t_sp *sp);
 int			parsing_pl(char **step, t_pl *pl);
 int			parsing_cy(char **step, t_cy *cy);
+int			close_win(int key, t_img *data);
+int			key_hook(int key, t_img *data);
+int			norm_vect(t_vect *v);
+t_vect		*create_vect(double x, double y, double z);
+int			get_color_v(t_vect *color);
+int			get_color_d(double x, double y, double z);
+void		ft_create_obj(t_scene *sc);
+double		vect_lenght(t_vect *v);
+int			norm_vect(t_vect *v);
+t_vect		*create_vect(double x, double y, double z);
+t_vect		*vect_sub(t_vect *v1, t_vect *v2);
+double		vect_dot_product(t_vect *v1, t_vect *v2);
+t_sp	*create_sphere(t_vect *origin, double radius);
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
 #endif

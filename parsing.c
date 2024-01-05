@@ -6,7 +6,7 @@
 /*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 16:44:21 by rlevilla          #+#    #+#             */
-/*   Updated: 2023/12/18 20:03:39 by rlevilla         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:34:54 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_create_obj(t_scene *sc)
 	sc->a = (t_a *)malloc(sizeof(t_a));
 	sc->a->color = (t_vect *)malloc(sizeof(t_vect));
 	sc->cam = (t_cam *)malloc(sizeof(t_cam));
-	sc->cam->view_p = (t_vect *)malloc(sizeof(t_vect));
+	sc->cam->origin = (t_vect *)malloc(sizeof(t_vect));
 	sc->cam->dir = (t_vect *)malloc(sizeof(t_vect));
 	sc->light = (t_light *)malloc(sizeof(t_light));
 	sc->light->light_point = (t_vect *)malloc(sizeof(t_vect));
@@ -32,6 +32,8 @@ void	ft_create_obj(t_scene *sc)
 	sc->cy->center = (t_vect *)malloc(sizeof(t_vect));
 	sc->cy->norm_vect = (t_vect *)malloc(sizeof(t_vect));
 	sc->cy->color = (t_vect *)malloc(sizeof(t_vect));
+	sc->map = (t_img *)malloc(sizeof(t_img));
+	sc->map->color = (t_vect *)malloc(sizeof(t_vect));
 }
 
 t_vect	*fill_vector(char **src, t_vect *vect)
@@ -41,8 +43,8 @@ t_vect	*fill_vector(char **src, t_vect *vect)
 	vect->z = ft_atod(src[2]);
 	/*printf("vect->x = %f\n", vect->x);
 	printf("vect->y = %f\n", vect->y);
-	printf("vect->z = %f\n\n", vect->z);
-	return (vect);*/
+	printf("vect->z = %f\n\n", vect->z);*/
+	return (vect);
 }
 
 int	parsing_a(char **step, t_a *a)
@@ -50,12 +52,12 @@ int	parsing_a(char **step, t_a *a)
 	int		i;
 	int		i2;
 	char	**last_split;
-	(void)a;
+	//(void)a;
 
 	i = 1;
 	i2 = 0;
 	a->light_ratio = ft_atod(step[i]);
-	a->light_ratio = ft_atod(step[i]);
+	//a->light_ratio = ft_atod(step[i]);
 	last_split = ft_split(step[2], ',');
 	if (last_split == NULL)
 		return (-1);
@@ -100,10 +102,8 @@ void	parsing(int argc, char **argv, t_scene *sc)
 {
 	int		fd;
 	char	*line;
-	int		flag;
 
 	ft_create_obj(sc);
-	flag = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0 || argc != 2)
 		return ;
@@ -112,14 +112,14 @@ void	parsing(int argc, char **argv, t_scene *sc)
 	{
 		init_scene(line, sc);
 		line = get_next_line(fd);
-		//flag++;
 	}
+	return ;
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	//(void)argc, argv;
 	t_scene	sc;
 	parsing(argc, argv, &sc);
 	return (0);
-}
+}*/

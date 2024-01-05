@@ -6,11 +6,11 @@
 #    By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 15:01:27 by rlevilla          #+#    #+#              #
-#    Updated: 2023/12/17 23:10:20 by rlevilla         ###   ########.fr        #
+#    Updated: 2024/01/03 20:10:17 by rlevilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c draw_test.c utils.c ft_atod.c parsing.c
+SRCS = main.c draw_test.c utils.c ft_atod.c parsing.c parsing_scene.c hook.c vect_math.c
 OBJS	= ${SRCS:.c=.o}
 
 LIBFT = libft
